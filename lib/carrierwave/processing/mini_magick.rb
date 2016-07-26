@@ -302,7 +302,7 @@ module CarrierWave
       ensure
         image.destroy!
       end
-    rescue ::MiniMagick::Error, ::MiniMagick::Invalid => e
+    rescue ::MiniMagick::Error, ::MiniMagick::Invalid, ::Encoding::UndefinedConversionError => e
       default = I18n.translate(:"errors.messages.mini_magick_processing_error", :e => e, :locale => :en)
       message = I18n.translate(:"errors.messages.mini_magick_processing_error", :e => e, :default => default)
       raise CarrierWave::ProcessingError, message
